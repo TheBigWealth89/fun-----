@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// Understanding js obj prototype inherit and how it works under the js hood
+// Practicing with arr prototype 
+//I created my own custom prototype and let array inherit from my custom prototype 
+
+//Write code that enhances all arrays such that you can call the array.last() method on any 
+// array and it will return the last element. If there are no elements in the array, 
+// it should return -1.
+
+Array.prototype.lastNum = function () {
+    return this.length === 0 ? -1 : this[this.length -1]
+}
+
+    arr = [1,2,3]
+    console.log(arr.lastNum())
+
+
+Array.prototype.secondLast = function () {
+    return this.length < 2 ? undefined : this[this.length -2] 
+}
+
+arr = [10,20,30]
+
+console.log(arr.secondLast());
+
+ 
+    </script>
+</body>
+</html>
