@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Brute force (O(n3))
+      function triangleNumberBruteForce(nums) {
+        const n = nums.length;
+        let count = 0;
+        for (let i = 0; i < n; i++) {
+          for (let j = i + 1; j < n; j++) {
+            for (let k = j + 1; k < n; k++) {
+              const slides = [nums[i], nums[j], nums[k]];
+              const [a, b, c] = slides;
+              if (a + b > c) {
+                count++;
+              }
+            }
+          }
+        }
+        return count;
+      }
+
+      // console.log(triangleNumberBruteForce(arr));
+
+      // Optimized (O(n2))
+      function triangleNumberOptimized(nums) {
+        nums.sort((a, b) => a - b);
+        const n = nums.length;
+        let count = 0;
+
+        for (let k = 2; k < n; k++) {
+          let i = 0;
+          let j = k - 1;
+          console.log(` k = ${k} (nums[k] = ${nums[k]})`);
+
+          while (i < j) {
+            const sum = nums[i] + nums[j];
+            console.log(
+              `i = ${i}, (nums[i]=${nums[i]}), j=${j} (nums[j]=${nums[j]}), sum=${sum}`
+            );
+            
+          }
+        }
+      }
+
+      arr = [2, 3, 4, 6];
+      console.log(triangleNumberBruteForce(arr));
+    </script>
+  </body>
+</html>
