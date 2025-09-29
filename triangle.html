@@ -43,13 +43,25 @@
             console.log(
               `i = ${i}, (nums[i]=${nums[i]}), j=${j} (nums[j]=${nums[j]}), sum=${sum}`
             );
-            
+
+            if (sum > nums[k]) {
+              console.log(
+                `  ${sum} > ${nums[k]} -> TRUE, add ${j - i} (pairs)`
+              );
+              count += j - i;
+              j--;
+            } else {
+              console.log(`  ${sum} > ${nums[k]} -> FALSE, i++`);
+            }
+            console.log("  current count =", count);
           }
         }
+        console.log("\nTotal valid triangles =", count);
+        return count;
       }
 
       arr = [2, 3, 4, 6];
-      console.log(triangleNumberBruteForce(arr));
+      // console.log(triangleNumberOptimized(arr));
     </script>
   </body>
 </html>
