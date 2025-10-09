@@ -14,7 +14,8 @@
         for (let i = 0; i < n; i++) {
           for (let j = i + 1; j < n; j++) {
             for (let k = j + 1; k < n; k++) {
-              const slides = [nums[i], nums[j], nums[k]];
+              const slides = [nums[i], nums[j], nums[k]].sort((a, b) => a - b);
+              console.log(slides);
               const [a, b, c] = slides;
               if (a + b > c) {
                 count++;
@@ -22,46 +23,38 @@
             }
           }
         }
+        console.log("My counts", count);
         return count;
       }
+      arr = [2, 6, 4, 3];
 
-      // console.log(triangleNumberBruteForce(arr));
+      console.log(triangleNumberBruteForce(arr));
 
       // Optimized (O(n2))
-      function triangleNumberOptimized(nums) {
+      function triangleNumberTrace(nums) {
         nums.sort((a, b) => a - b);
         const n = nums.length;
         let count = 0;
-
         for (let k = 2; k < n; k++) {
-          let i = 0;
-          let j = k - 1;
-          console.log(` k = ${k} (nums[k] = ${nums[k]})`);
-
+          let i = 0,
+            j = k - 1;
           while (i < j) {
             const sum = nums[i] + nums[j];
-            console.log(
-              `i = ${i}, (nums[i]=${nums[i]}), j=${j} (nums[j]=${nums[j]}), sum=${sum}`
-            );
-
             if (sum > nums[k]) {
-              console.log(
-                `  ${sum} > ${nums[k]} -> TRUE, add ${j - i} (pairs)`
-              );
               count += j - i;
               j--;
             } else {
-              console.log(`  ${sum} > ${nums[k]} -> FALSE, i++`);
+              i++;
             }
-            console.log("  current count =", count);
           }
         }
-        console.log("\nTotal valid triangles =", count);
+        console.log("Total count", count);
+
         return count;
       }
 
-      arr = [2, 3, 4, 6];
-      console.log(triangleNumberOptimized(arr));
+
+      triangleNumberTrace([2, 3, 5, 7, 6]);
     </script>
   </body>
 </html>
